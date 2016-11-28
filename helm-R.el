@@ -156,14 +156,14 @@
                               (ess-execute (concat "library(" obj-name ")\n") t )))
          ("remove packages" . (lambda(obj-name)
                                 (ess-execute (concat "remove.packages(\"" obj-name "\")\n") t)))
-         ("remove marked packages" . helm-ess-marked-remove))    
+         ("remove marked packages" . helm-ess-marked-remove))
         (volatile)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helm-c-source-R-repospkg
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar helm-c-source-R-repospkg
+(setq helm-c-source-R-repospkg
       '((name . "R-repos-packages")
         (init . (lambda ()
                   ;; this grabs the process name associated with the buffer
@@ -177,23 +177,21 @@
                                 (progn
                                   (setq buf (current-buffer))
                                   (with-current-buffer helm-c-ess-buffer
-                                    (ess-command "writeLines(paste('', rownames(available.packages(contriburl=contrib.url(\"http://cran.md.tsukuba.ac.jp/\"))), sep=''))\n" buf))
+                                    (ess-command "writeLines(paste('', rownames(available.packages(contriburl=contrib.url(\"https://cran.ism.ac.jp/\"))), sep=''))\n" buf))
                                   ;; (ess-command "writeLines(paste('', sort(.packages(all.available=TRUE)), sep=''))\n" buf))
                                   (split-string (buffer-string) "\n" t)))
                             (error nil)))))
         (action
          ("install packages" . (lambda(obj-name)
-                                 (ess-execute 
-                                  (concat "install.packages(\"" obj-name "\", lib = .libPaths()[1], contriburl=contrib.url(\"http://cran.md.tsukuba.ac.jp/\"))\n") t)
-(minibuffer-keyboard-quit)))
-                                 
-         ("install marked packages" . helm-ess-marked-install))    
+                                 (ess-execute (concat "install.packages(\"" obj-name "\")\n") t)))
+         ("install marked packages" . helm-ess-marked-install))
         (volatile)))
 
-(defcustom helm-for-R-list '(helm-c-source-R-help 
-                                 helm-c-source-R-local 
-                                 helm-c-source-R-repospkg 
-                                 helm-c-source-R-localpkg)
+
+(defcustom helm-for-R-list '(helm-c-source-R-help
+                             helm-c-source-R-local
+                             helm-c-source-R-repospkg
+                             helm-c-source-R-localpkg)
   "Your prefered sources to GNU R."
   :type 'list
   :group 'helm-R)
