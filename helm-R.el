@@ -1,13 +1,13 @@
 ;;; helm-R.el --- helm-sources and some utilities for GNU R.
 
 ;; Description: helm-sources and some utilities for GNU R.
-;; Author: myuhe <yuhei.maeda_at_gmail.com>
-;; Maintainer: myuhe
-;; Copyright (C) 2010,2011,2012 myuhe all rights reserved.
-;; Created: :2012-05-20
+;; Author: ymattu <mattu.yuya_at_gmail.com>
+;; Maintainer: ymattu
+;; Copyright (C) 2016 ymattu all rights reserved.
+;; Created: :2016-12-01
 ;; Version: 0.0.1
 ;; Keywords: convenience
-;; URL: https://github.com/myuhe/helm-R.el
+;; URL: https://github.com/ymattu/helm-myR.el
 ;; Package-Requires: ((helm "20120517")(ess "20120509"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -46,9 +46,9 @@
 (require 'helm)
 (require 'ess-site)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 ;;helm-c-source-R-help
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 
 (defvar helm-c-source-R-help
       '((name . "R objects / help")
@@ -77,9 +77,9 @@
                      (ess-execute (concat "dput(" obj-name ")\n") nil (concat "R dput: " obj-name)))))
         (volatile)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 ;; helm-c-source-R-local
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 
 (defvar helm-c-source-R-local
       '((name . "R local objects")
@@ -116,9 +116,9 @@
                      (ess-execute (concat "dput(" obj-name ")\n") nil (concat "R dput: " obj-name)))))
         (volatile)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 ;; func for action
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 
 (defun helm-ess-marked-install (candidate)
   (dolist (i (helm-marked-candidates))
@@ -128,9 +128,9 @@
   (dolist (i (helm-marked-candidates))
     (ess-execute (concat "remove.packages(\"" i "\")\n") t)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 ;; helm-c-source-R-localpkg
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 
 (defvar helm-c-source-R-localpkg
       '((name . "R-local-packages")
@@ -159,9 +159,9 @@
          ("remove marked packages" . helm-ess-marked-remove))
         (volatile)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 ;; helm-c-source-R-repospkg
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+------------------------------------------------------------
 
 (setq helm-c-source-R-repospkg
       '((name . "R-repos-packages")
@@ -190,7 +190,7 @@
 
 (defcustom helm-for-R-list '(helm-c-source-R-help
                              helm-c-source-R-local
-                             helm-c-source-R-repospkg
+                             ;; helm-c-source-R-repospkg
                              helm-c-source-R-localpkg)
   "Your prefered sources to GNU R."
   :type 'list
@@ -203,4 +203,5 @@
   (helm-other-buffer helm-for-R-list "*helm for GNU R*"))
 
 (provide 'helm-R)
+
 ;;; helm-R.el ends here
