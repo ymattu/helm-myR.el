@@ -46,9 +46,9 @@
 (require 'helm)
 (require 'ess-site)
 
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 ;;helm-c-source-R-help
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 
 (defvar helm-c-source-R-help
       '((name . "R objects / help")
@@ -77,9 +77,9 @@
                      (ess-execute (concat "dput(" obj-name ")\n") nil (concat "R dput: " obj-name)))))
         (volatile)))
 
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 ;; helm-c-source-R-local
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 
 (defvar helm-c-source-R-local
       '((name . "R local objects")
@@ -116,9 +116,9 @@
                      (ess-execute (concat "dput(" obj-name ")\n") nil (concat "R dput: " obj-name)))))
         (volatile)))
 
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 ;; func for action
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 
 (defun helm-ess-marked-install (candidate)
   (dolist (i (helm-marked-candidates))
@@ -128,9 +128,9 @@
   (dolist (i (helm-marked-candidates))
     (ess-execute (concat "remove.packages(\"" i "\")\n") t)))
 
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 ;; helm-c-source-R-localpkg
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 
 (defvar helm-c-source-R-localpkg
       '((name . "R-local-packages")
@@ -159,11 +159,11 @@
          ("remove marked packages" . helm-ess-marked-remove))
         (volatile)))
 
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 ;; helm-c-source-R-repospkg
-;; ------------------------------------------------------------
+;; ---------------------------------------------------------
 
-(setq helm-c-source-R-repospkg
+(defvar helm-c-source-R-repospkg
       '((name . "R-repos-packages")
         (init . (lambda ()
                   ;; this grabs the process name associated with the buffer
@@ -196,11 +196,23 @@
   :type 'list
   :group 'helm-R)
 
+(defcustom helm-for-R-repos '(helm-c-source-R-repospkg)
+  "Available Packages for R."
+  :type 'list
+  :group 'helm-R)
+
 ;;;###autoload
 (defun helm-for-R ()
   "Preconfigured `helm' for GNU R."
   (interactive)
   (helm-other-buffer helm-for-R-list "*helm for GNU R*"))
+
+
+;;;###autoload
+(defun helm-R-install-packages ()
+  "Preconfigured `helm' for R Pkgs."
+  (interactive)
+  (helm-other-buffer helm-for-R-repos "*helm for GNU R*"))
 
 (provide 'helm-R)
 
