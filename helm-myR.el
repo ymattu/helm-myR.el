@@ -1,4 +1,4 @@
-;;; helm-R.el --- helm-sources and some utilities for GNU R.
+;;; helm-myR.el --- helm-sources and some utilities for GNU R.
 
 ;; Description: helm-sources and some utilities for GNU R.
 ;; Author: ymattu <mattu.yuya_at_gmail.com>
@@ -27,10 +27,10 @@
 
 ;;; Commentary:
 ;;
-;; Put the helm-R.el, helm.el and ESS to your
+;; Put the helm-myR.el, helm.el and ESS to your
 ;; load-path.
 ;; Add to .emacs:
-;; (require 'helm-R)
+;; (require 'helm-myR)
 ;;
 
 ;;; Command:
@@ -194,12 +194,12 @@
                              helm-c-source-R-localpkg)
   "Your prefered sources to GNU R."
   :type 'list
-  :group 'helm-R)
+  :group 'helm-myR)
 
 (defcustom helm-for-R-repos '(helm-c-source-R-repospkg)
   "Available Packages for R."
   :type 'list
-  :group 'helm-R)
+  :group 'helm-myR)
 
 ;;;###autoload
 (defun helm-for-R ()
@@ -209,11 +209,11 @@
 
 
 ;;;###autoload
-(defun helm-R-install-packages ()
+(defun helm-myR-install-packages ()
   "Preconfigured `helm' for R Pkgs."
   (interactive)
   (helm-other-buffer helm-for-R-repos "*helm for GNU R*"))
 
-(provide 'helm-R)
+(provide 'helm-myR)
 
-;;; helm-R.el ends here
+;;; helm-myR.el ends here
