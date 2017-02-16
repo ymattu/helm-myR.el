@@ -183,7 +183,7 @@
                             (error nil)))))
         (action
          ("install packages" . (lambda(obj-name)
-                                 (ess-execute (concat "install.packages(\"" obj-name "\", \" repos = https://cran.ism.ac.jp/ \")\n") t)))
+                                 (ess-execute (concat "install.packages(\"" obj-name "\", repos = \" https://cran.ism.ac.jp/ \")\n") t)))
          ("install marked packages" . helm-ess-marked-install))
         (volatile)))
 
