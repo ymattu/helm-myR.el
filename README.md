@@ -1,5 +1,6 @@
 # helm-myR.el
-Tthis package provides two functions, `helm-for-R` and `helm-R-install-packages`.
+This package provides two functions, `helm-for-R` and `helm-R-install-packages`.
+This package is inspired by helm-R (https://github.com/myuhe/helm-R.el)
 
 ## helm-for-R
 By using this function, you can see help of R functions and the structure of local object through helm interface.
