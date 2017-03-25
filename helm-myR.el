@@ -177,13 +177,13 @@
                                 (progn
                                   (setq buf (current-buffer))
                                   (with-current-buffer helm-c-ess-buffer
-                                    (ess-command "writeLines(paste('', rownames(available.packages(contriburl=contrib.url(\"https://cran.ism.ac.jp/\"))), sep=''))\n" buf))
+                                    (ess-command "writeLines(paste('', rownames(available.packages(contriburl=contrib.url(\"https://cloud.r-project.org/\"))), sep=''))\n" buf))
                                   ;; (ess-command "writeLines(paste('', sort(.packages(all.available=TRUE)), sep=''))\n" buf))
                                   (split-string (buffer-string) "\n" t)))
                             (error nil)))))
         (action
          ("install packages" . (lambda(obj-name)
-                                 (ess-execute (concat "install.packages(\"" obj-name "\", repos = \"https://cran.ism.ac.jp/\")\n") t)))
+                                 (ess-execute (concat "install.packages(\"" obj-name "\", repos = \"https://cloud.r-project.org/\")\n") t)))
          ("install marked packages" . helm-ess-marked-install))
         (volatile)))
 
