@@ -6,7 +6,7 @@ This package is inspired by helm-R (https://github.com/myuhe/helm-R.el)
 By using this function, you can see help of R functions and the structure of local object through helm interface.
 
 ## helm-R-install-packages
-By using this gunction, you can choose an R package in CRAN mirror in Japan( https://cran.ism.ac.jp ).
+By using this gunction, you can choose an R package in CRAN mirror in Japan( https://cloud.r-project.org/ ).
 
 # key-bindings
 You can use any key-bindings to use these functions. For example,
